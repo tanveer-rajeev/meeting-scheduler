@@ -1,0 +1,55 @@
+
+.bookingDiv {
+    height: 400px;
+    width: 50%;
+    margin: auto;
+    background-color:rgb(166, 213, 243);
+    border-radius: 6px;
+    color: black;
+    justify-content: center;
+    box-shadow: 8px 7px 8px 4px lightgray;
+    border: 2px solid black;
+
+}
+#card{
+    text-align: center;
+    height: 180px;
+    /*width: 200px;*/
+    background-color: #2b2b2c;
+    border-radius: 5px;
+    color: darkcyan;
+    font-size:20px;
+    box-shadow: 2px 2px 11px #343131;
+
+}
+
+.roomBtn{
+    border-radius: 2px;
+    height: 41px;
+    background-color: #444b5b;
+}
+
+.inp-style, #rooms {
+    border: 2px solid #5b5b5f;
+    border-radius: 5px;
+    background-color: rgb(166, 213, 243);
+    height: 40px;
+    width: 700px;
+
+}
+
+.bookingNotification {
+    /*padding-top: 25px;*/
+    /*padding-bottom: 23px;*/
+    text-align: center;
+    /*justify-content: center;*/
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: 700;
+    color: lightcoral;
+    /*width: 110%;*/
+    /*margin: 19px auto 30px;*/
+    background-color: white;
+    box-shadow: 8px 7px 8px 4px lightblue;
+}
