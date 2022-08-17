@@ -1,10 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -17,12 +15,10 @@ import {
   signUPWithCredentials,
 } from "./CredentialController";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
 const theme = createTheme();
 
 const SignInSide = () => {
   const [newUser, setNewUser] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const [require, setRequire] = useState("");
   const navigate = useNavigate();
 
@@ -53,8 +49,6 @@ const SignInSide = () => {
     } else if (!newUser || require === "") {
       logInWithCredentials(userDetails).then((response) => {
         if (response !== 403) {
-          setLoggedInUser(response);
-          // setNewUser(false);
           navigate(`/home`);
         } else handleResponse(response);
       });

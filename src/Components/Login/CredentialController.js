@@ -1,11 +1,6 @@
 import axios from "axios";
 
-export const logInWithCredentials = ({
-  username,
-  password,
-  phoneNumber,
-  department,
-}) => {
+export const logInWithCredentials = ({ username, password }) => {
   const loginAPI = `http://localhost:8080/login`;
 
   return axios
@@ -16,13 +11,7 @@ export const logInWithCredentials = ({
     .then((response) => {
       const { headers } = response;
       const jwtToken = headers.pragma;
-      const user = {
-        name: username,
-        phoneNumber: phoneNumber,
-        department: department,
-      };
       sessionStorage.setItem("token", jwtToken);
-      return user;
     })
     .catch((error) => {
       return error.response.status;
