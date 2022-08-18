@@ -4,11 +4,24 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import UserProfile from "./UserProfile";
 import UserSchduler from "./UserSchduler";
+import MakeSchedule from "./MakeSchedule";
 const Home = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Grid container spacing={3}>
-        Profile
+      <Grid container spacing={5}>
+        <Grid item xs={12} md={8} lg={9}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: 400,
+            }}
+          >
+            <MakeSchedule />
+          </Paper>
+        </Grid>
+
         <Grid item xs={12} md={4} lg={3}>
           <Paper
             sx={{
@@ -21,8 +34,8 @@ const Home = () => {
             <UserProfile />
           </Paper>
         </Grid>
+
         <Grid item xs={12}>
-          Your Scheduled
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
             <UserSchduler />
           </Paper>

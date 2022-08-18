@@ -16,7 +16,8 @@ import { JWT_Decode } from "./Components/Utilities/JWT_Decode";
 export const UserContext = createContext();
 
 const ProtectedRoute = ({ user, redirectPath = "/login" }) => {
-  if (JWT_Decode() == null) {
+  // console.log(user);
+  if (user == null) {
     return <Navigate to={redirectPath} replace />;
   }
 
@@ -40,7 +41,6 @@ const App = () => {
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
     </BrowserRouter>
-    // </UserContext.Provider>
   );
 };
 
