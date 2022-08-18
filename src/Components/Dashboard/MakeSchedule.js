@@ -3,13 +3,24 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { Box, InputLabel, MenuItem, Select } from "@mui/material";
+import AddCardIcon from "@mui/icons-material/AddCard";
+import {
+  Button,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+} from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DatePicker, DesktopDatePicker } from "@mui/x-date-pickers";
-
+import AddBoxIcon from "@mui/icons-material/AddBox";
 export default function MakeSchedule() {
-  const [time, setTime] = React.useState({
+  const [schedule, setSchedule] = React.useState({
+    name: "",
+    room: "",
+    dept: "",
     startTime: null,
     endTime: null,
     date: new Date(),
@@ -20,13 +31,21 @@ export default function MakeSchedule() {
     console.log(data.get);
   };
   return (
-    <React.Fragment>
+    <>
       <Typography variant="h6" gutterBottom>
         Add Schedule
       </Typography>
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={6}>
+      <Paper
+        sx={{
+          p: 2,
+          display: "flex",
+          flexDirection: "row",
+          height: 250,
+          justifyContent: "center",
+        }}
+      >
+        <Grid container xs={12} md={18} lg={9} rowSpacing={2}>
+          <Grid item xs={12} sm={9}>
             <TextField
               required
               id="firstName"
@@ -37,24 +56,27 @@ export default function MakeSchedule() {
               variant="standard"
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={9}>
             <InputLabel id="room">Meeting Room</InputLabel>
             <Select
               required
-              id="room"
               name="room"
               label="Meeting room"
               fullWidth
               autoComplete="family-name"
               variant="standard"
+              value={schedule.room}
+              onChange={(event) =>
+                setSchedule({ ...schedule, room: event.target.value })
+              }
             >
-              <MenuItem> Office </MenuItem>
-              <MenuItem> Interview </MenuItem>
-              <MenuItem> Personal </MenuItem>
-              <MenuItem> Buyer </MenuItem>
+              <MenuItem value="Official"> Office </MenuItem>
+              <MenuItem value="Interview"> Interview </MenuItem>
+              <MenuItem value="Team"> Team </MenuItem>
+              <MenuItem value="Client"> Client </MenuItem>
             </Select>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={9}>
             <TextField
               required
               id="department"
@@ -65,39 +87,48 @@ export default function MakeSchedule() {
               variant="standard"
             />
           </Grid>
+        </Grid>
+
+        <Grid container xs={12} md={8} lg={9} rowSpacing={2}>
           <LocalizationProvider dateAdapter={AdapterMoment}>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={9}>
               <TimePicker
                 label="Start Time"
-                value={time.startTime}
+                value={schedule.startTime}
                 onChange={(newValue) =>
-                  setTime({ ...time, startTime: newValue })
+                  setSchedule({ ...schedule, startTime: newValue })
                 }
                 renderInput={(params) => <TextField {...params} />}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={9}>
               <TimePicker
                 label="End Time"
-                value={time.endTime}
-                onChange={(newValue) => setTime({ ...time, endTime: newValue })}
+                value={schedule.endTime}
+                onChange={(newValue) =>
+                  setSchedule({ ...schedule, endTime: newValue })
+                }
                 renderInput={(params) => <TextField {...params} />}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={9}>
               <DatePicker
                 views={["day"]}
                 label="Date"
-                value={time.date}
+                value={schedule.date}
                 onChange={(newValue) => {
-                  setTime({ ...time, date: newValue });
+                  setSchedule({ ...schedule, date: newValue });
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </Grid>
           </LocalizationProvider>
         </Grid>
-      </Box>
-    </React.Fragment>
+
+        <Button variant="outlined" size="large" disabled={false}>
+          <AddBoxIcon />
+        </Button>
+      </Paper>
+    </>
   );
 }
