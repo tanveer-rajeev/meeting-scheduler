@@ -6,7 +6,6 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import {
   Button,
-  IconButton,
   InputLabel,
   MenuItem,
   Paper,
@@ -14,8 +13,9 @@ import {
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { DatePicker, DesktopDatePicker } from "@mui/x-date-pickers";
+import { DatePicker } from "@mui/x-date-pickers";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+
 export default function MakeSchedule() {
   const [schedule, setSchedule] = React.useState({
     name: "",
@@ -44,7 +44,7 @@ export default function MakeSchedule() {
           justifyContent: "center",
         }}
       >
-        <Grid container xs={12} md={18} lg={9} rowSpacing={2}>
+        <Grid container rowSpacing={2}>
           <Grid item xs={12} sm={9}>
             <TextField
               required
@@ -89,7 +89,7 @@ export default function MakeSchedule() {
           </Grid>
         </Grid>
 
-        <Grid container xs={12} md={8} lg={9} rowSpacing={2}>
+        <Grid container rowSpacing={2}>
           <LocalizationProvider dateAdapter={AdapterMoment}>
             <Grid item xs={12} sm={9}>
               <TimePicker

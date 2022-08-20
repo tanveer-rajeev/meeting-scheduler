@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+### Meeting Scheduler
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-> Backend repo [Github](https://github.com/tanveer-rajeev/Meeting-Scheduler-server).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+Scheduler APIs provides
 
-### `npm start`
+- This service gives a solution of scheduling multiple meetings at different times without overlaping existing ongoing meetings for the internal office rooms.
+- A user/admin will be able to do CRUD operation and also book multiple schedules as well as create a new meeting room with start time and end time.
+- The user will get a warning when the user's schedule ranges overlap with other meetings.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to run
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+. Prerequisite
 
-### `npm test`
+```
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `npm run build`
+### User Schedules History
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![User scheduler history](https://user-images.githubusercontent.com/39630470/136975442-f0f7772c-2116-42d2-b9a4-0a1c3a4a5f9c.PNG)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### On going meeting
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![On going meeting](https://user-images.githubusercontent.com/39630470/136975515-e3d46c68-07a5-460a-a560-508107e61d43.PNG)
 
-### `npm run eject`
+### Edit User Scheduler
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Edit user scheduler](https://user-images.githubusercontent.com/39630470/136975568-6f716485-f58f-4b34-a8ce-f10a850b09d0.PNG)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Booking A Schedule
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Booking Schedule](https://user-images.githubusercontent.com/39630470/136975920-a0698ad5-f119-49df-ba26-6dd5b6f9d645.PNG)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Add Meeting Room
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![AddRoom](https://user-images.githubusercontent.com/39630470/136976160-56df9580-bbbb-4edf-b4e8-0ac3e1a0be85.PNG)
