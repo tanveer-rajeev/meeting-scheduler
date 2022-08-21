@@ -4,17 +4,15 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import AddCardIcon from "@mui/icons-material/AddCard";
-import {
-  Button,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-} from "@mui/material";
+import { Button, InputLabel, MenuItem, Paper, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DatePicker } from "@mui/x-date-pickers";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import axios from "axios";
+import { JWT_Decode } from "../Utilities/JWT_Decode";
+import { MomentTimeConverter } from "../Utilities/TimeConverter";
+import moment from "moment";
 
 export default function MakeSchedule() {
   const [schedule, setSchedule] = React.useState({
@@ -25,10 +23,47 @@ export default function MakeSchedule() {
     endTime: null,
     date: new Date(),
   });
+
+  // const [enable, setEnable] = React.useState(true);
+
+  // if (
+  //   schedule.room !== "" &&
+  //   schedule.startTime !== null &&
+  //   schedule.endTime !== null &&
+  //   schedule.date !== new Date()
+  // ) {
+  //   console.log("button enable");
+  //   setEnable((prev) => ({ ...prev, enabled: false }));
+  // }
+
+  console.log("Render");
   const handleSubmit = (event) => {
+    let { name, room, date, startTime, endTime } = schedule;
+
+    startTime = moment(startTime).format("HH:MM");
+    date = moment(date).format("YYYY-MM-DD");
+    endTime = moment(endTime).format("HH:MM");
+    name = JWT_Decode();
+    const bookingApi = `http://localhost:8080/booking/userName/${name}/roomName/${room}`;
+    const post = {
+      bookingDate: date,
+      startTime: startTime,
+      endTime: endTime,
+    };
+
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log(data.get);
+    axios
+      .post(bookingApi, post, {
+        headers: {
+          Pragma: sessionStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
   };
   return (
     <>
@@ -63,11 +98,11 @@ export default function MakeSchedule() {
               name="room"
               label="Meeting room"
               fullWidth
-              autoComplete="family-name"
+              // autoComplete="family-name"
               variant="standard"
               value={schedule.room}
               onChange={(event) =>
-                setSchedule({ ...schedule, room: event.target.value })
+                setSchedule((prev) => ({ ...prev, room: event.target.value }))
               }
             >
               <MenuItem value="Official"> Office </MenuItem>
@@ -96,7 +131,7 @@ export default function MakeSchedule() {
                 label="Start Time"
                 value={schedule.startTime}
                 onChange={(newValue) =>
-                  setSchedule({ ...schedule, startTime: newValue })
+                  setSchedule((prev) => ({ ...prev, startTime: newValue }))
                 }
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -106,7 +141,7 @@ export default function MakeSchedule() {
                 label="End Time"
                 value={schedule.endTime}
                 onChange={(newValue) =>
-                  setSchedule({ ...schedule, endTime: newValue })
+                  setSchedule((prev) => ({ ...prev, endTime: newValue }))
                 }
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -116,16 +151,21 @@ export default function MakeSchedule() {
                 views={["day"]}
                 label="Date"
                 value={schedule.date}
-                onChange={(newValue) => {
-                  setSchedule({ ...schedule, date: newValue });
-                }}
+                onChange={(newValue) =>
+                  setSchedule((prev) => ({ ...prev, date: newValue }))
+                }
                 renderInput={(params) => <TextField {...params} />}
               />
             </Grid>
           </LocalizationProvider>
         </Grid>
 
-        <Button variant="outlined" size="large" disabled={false}>
+        <Button
+          onClick={handleSubmit}
+          variant="outlined"
+          size="large"
+          disabled={false}
+        >
           <AddBoxIcon />
         </Button>
       </Paper>

@@ -5,10 +5,21 @@ import axios from "axios";
 import PersonIcon from "@mui/icons-material/Person";
 import LocalPhoneTwoToneIcon from "@mui/icons-material/LocalPhoneTwoTone";
 import { JWT_Decode } from "../Utilities/JWT_Decode";
+import { Avatar, Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  // textAlign: "right",
+  color: theme.palette.text.secondary,
+}));
 
 function UserProfile() {
   const [user, setUser] = useState({});
-
+  // const classes = useStyles();
   useEffect(() => {
     const name = JWT_Decode();
     axios
@@ -25,17 +36,29 @@ function UserProfile() {
 
   const { username, phoneNumber, department } = user;
   return (
-    <div>
-      <Grid item xs={12} md={6}>
-        <Card xs={5}>
-          <PersonIcon /> {username}
-        </Card>
-        <Card xs={2}>
-          <LocalPhoneTwoToneIcon /> {phoneNumber}
-        </Card>
-        <Card xs={2}>Dept. - {department}</Card>
+    <Box sx={{ flexGrow: 3 }}>
+      <Grid container spacing={1}>
+        <Avatar
+          alt="Remy Sharp"
+          src="/broken-image.jpg"
+          sx={{ width: 88, height: 88 }}
+          align="center"
+        />
+        <Grid item xs={12} sm={9}>
+          <Item>
+            <PersonIcon /> {username}
+          </Item>
+        </Grid>
+        <Grid item xs={12} sm={9}>
+          <Item>
+            <LocalPhoneTwoToneIcon /> {phoneNumber}
+          </Item>
+        </Grid>
+        <Grid item xs={12} sm={9}>
+          <Item>Dept. - {department}</Item>
+        </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }
 

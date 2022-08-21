@@ -10,11 +10,11 @@ import { JWT_Decode } from "../Utilities/JWT_Decode";
 
 export default function UserSchduler() {
   const [bookings, setBookings] = useState([]);
-
+  console.log("UserSchduler");
   useEffect(() => {
-    const name = JWT_Decode();
+    const username = JWT_Decode();
     axios
-      .get(`http://localhost:8080/users/allBookings/${name}`, {
+      .get(`http://localhost:8080/users/allBookings/${username}`, {
         headers: {
           Pragma: sessionStorage.getItem("token"),
         },
@@ -27,7 +27,7 @@ export default function UserSchduler() {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -35,7 +35,8 @@ export default function UserSchduler() {
             <TableCell>Start Time</TableCell>
             <TableCell>End Time</TableCell>
             <TableCell>Booking Date</TableCell>
-            <TableCell align="right">Edit</TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -47,6 +48,6 @@ export default function UserSchduler() {
           ))}
         </TableBody>
       </Table>
-    </React.Fragment>
+    </>
   );
 }

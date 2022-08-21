@@ -48,7 +48,6 @@ const SignInSide = () => {
       });
     } else if (!newUser || require === "") {
       logInWithCredentials(userDetails).then((response) => {
-        console.log(response);
         if (response !== 403) {
           navigate(`/home`);
         } else handleResponse(response);

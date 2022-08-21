@@ -2,8 +2,9 @@ import React from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { TimeConverter } from "../Utilities/TimeConverter";
-import { Button } from "@mui/material";
-
+import { IconButton } from "@mui/material";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import DeleteIcon from "@mui/icons-material/Delete";
 const DisplayUserSchdulers = ({ bookingResponse }) => {
   const { roomName, booking } = bookingResponse;
   const { startTime, endTime, bookingDate } = booking;
@@ -17,8 +18,15 @@ const DisplayUserSchdulers = ({ bookingResponse }) => {
       <TableCell>{TimeConverter(startTimeInt, startTime)}</TableCell>
       <TableCell>{TimeConverter(endTimeInt, endTime)}</TableCell>
       <TableCell>{bookingDate}</TableCell>
-      <TableCell align="right">
-        <Button onClick={handleEditBooking}>Edit</Button>
+      <TableCell>
+        <IconButton onClick={handleEditBooking}>
+          <BorderColorIcon />
+        </IconButton>
+      </TableCell>
+      <TableCell>
+        <IconButton onClick={handleEditBooking}>
+          <DeleteIcon />
+        </IconButton>
       </TableCell>
     </TableRow>
   );

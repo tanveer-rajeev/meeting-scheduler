@@ -1,14 +1,12 @@
 import jwt_decode from "jwt-decode";
 
-const token = sessionStorage.getItem("token");
 export const JWT_Decode = () => {
-  if (token == null) return null;
-  const decode = jwt_decode(token);
+  const decode = jwt_decode(sessionStorage.getItem("token"));
   return decode.sub;
 };
 
 export const Role = () => {
-  return jwt_decode(token).authorities[2].authority;
+  return jwt_decode(sessionStorage.getItem("token")).authorities[2].authority;
 };
 
 export const isUser = () => {
