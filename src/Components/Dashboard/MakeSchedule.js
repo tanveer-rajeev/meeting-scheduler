@@ -3,16 +3,24 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import AddCardIcon from "@mui/icons-material/AddCard";
 import { Button, InputLabel, MenuItem, Paper, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DatePicker } from "@mui/x-date-pickers";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import axios from "axios";
 import { JWT_Decode } from "../Utilities/JWT_Decode";
-import { MomentTimeConverter } from "../Utilities/TimeConverter";
 import moment from "moment";
+import API from "../Server_API/API";
+// const [enable, setEnable] = React.useState(true);
+// if (
+//   schedule.room !== "" &&
+//   schedule.startTime !== null &&
+//   schedule.endTime !== null &&
+//   schedule.date !== new Date()
+// ) {
+//   console.log("button enable");
+//   setEnable((prev) => ({ ...prev, enabled: false }));
+// }
 
 export default function MakeSchedule() {
   const [schedule, setSchedule] = React.useState({
@@ -24,19 +32,23 @@ export default function MakeSchedule() {
     date: new Date(),
   });
 
-  // const [enable, setEnable] = React.useState(true);
+  const [rooms, setRooms] = React.useState([]);
+  React.useEffect(() => {
+    console.log(API.get.getAllRooms);
+    axios
+      .get(`http://localhost:8080/rooms`, {
+        headers: {
+          Pragma: sessionStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setRooms(response.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  }, []);
 
-  // if (
-  //   schedule.room !== "" &&
-  //   schedule.startTime !== null &&
-  //   schedule.endTime !== null &&
-  //   schedule.date !== new Date()
-  // ) {
-  //   console.log("button enable");
-  //   setEnable((prev) => ({ ...prev, enabled: false }));
-  // }
-
-  console.log("Render");
   const handleSubmit = (event) => {
     let { name, room, date, startTime, endTime } = schedule;
 
@@ -98,17 +110,19 @@ export default function MakeSchedule() {
               name="room"
               label="Meeting room"
               fullWidth
-              // autoComplete="family-name"
               variant="standard"
               value={schedule.room}
               onChange={(event) =>
                 setSchedule((prev) => ({ ...prev, room: event.target.value }))
               }
             >
-              <MenuItem value="Official"> Office </MenuItem>
-              <MenuItem value="Interview"> Interview </MenuItem>
-              <MenuItem value="Team"> Team </MenuItem>
-              <MenuItem value="Client"> Client </MenuItem>
+              {rooms &&
+                rooms.map((room) => (
+                  <MenuItem key={room.id} value={room.roomName}>
+                    {" "}
+                    {room.roomName}{" "}
+                  </MenuItem>
+                ))}
             </Select>
           </Grid>
           <Grid item xs={12} sm={9}>
@@ -166,7 +180,7 @@ export default function MakeSchedule() {
           size="large"
           disabled={false}
         >
-          <AddBoxIcon />
+          Add
         </Button>
       </Paper>
     </>

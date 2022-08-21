@@ -13,12 +13,13 @@ import {
 import Test from "./Components/Dashboard/Test";
 import Home from "./Components/Dashboard/Home";
 import { JWT_Decode } from "./Components/Utilities/JWT_Decode";
+import AddRoom from "./Components/Room/AddRoom";
 export const UserContext = createContext();
 
 const ProtectedRoute = ({ user }) => {
-  // console.log(user());
-  if (user() == null) {
-    return <Navigate to="/login" replace />;
+  const name = user();
+  if (name == null) {
+    return <Navigate to="/login" replace={true} />;
   }
 
   return <Outlet />;
@@ -34,7 +35,7 @@ const App = () => {
           <Route element={<Layout />}>
             <Route path="home" element={<Home />} />
             <Route path="ongoingScheduled" element={<DisplayRooms />} />
-            <Route path="room" element={<Test />}></Route>
+            <Route path="addRoom" element={<AddRoom />}></Route>
           </Route>
         </Route>
 

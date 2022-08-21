@@ -26,10 +26,10 @@ function BookedUserInfo({ id, startTime, endTime, bookingDate }) {
     <TableRow>
       <TableCell>{TimeConverter(startTimeInt, startTime)}</TableCell>
       <TableCell>{TimeConverter(endTimeInt, endTime)}</TableCell>
+      <TableCell>{bookingDate}</TableCell>
       <TableCell>{bookedUsersInfo.username}</TableCell>
       <TableCell>{bookedUsersInfo.department}</TableCell>
       <TableCell>{bookedUsersInfo.phoneNumber}</TableCell>
-      <TableCell>{bookingDate}</TableCell>
     </TableRow>
   );
 }

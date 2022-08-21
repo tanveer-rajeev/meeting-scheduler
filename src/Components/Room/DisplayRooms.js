@@ -1,3 +1,4 @@
+import { Container, Grid } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import RoomCard from "./RoomCard";
@@ -18,11 +19,13 @@ const DisplayRooms = () => {
   }, []);
 
   return (
-    <div>
-      {showRoom.map((room) => (
-        <RoomCard key={room.id} room={room} />
-      ))}
-    </div>
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 3 }}>
+      <Grid container spacing={3}>
+        {showRoom.map((room) => (
+          <RoomCard key={room.id} room={room} />
+        ))}
+      </Grid>
+    </Container>
   );
 };
 

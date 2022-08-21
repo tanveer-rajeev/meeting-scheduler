@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import UserProfile from "./UserProfile";
 import UserSchduler from "./UserSchduler";
 import MakeSchedule from "./MakeSchedule";
-import { Avatar } from "@mui/material";
+
 const Home = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 3 }}>

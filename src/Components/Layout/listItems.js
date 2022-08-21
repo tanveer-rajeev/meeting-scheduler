@@ -6,7 +6,7 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Link } from "react-router-dom";
 
 export const mainListItems = (
-  <Link to="/home">
+  <Link style={{ textDecoration: "none", color: "black" }} to="/home">
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
@@ -18,7 +18,10 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <>
-    <Link to="/ongoingScheduled">
+    <Link
+      style={{ textDecoration: "none", color: "black" }}
+      to="/ongoingScheduled"
+    >
       <ListItemButton>
         <ListItemIcon>
           <AssignmentIcon />
@@ -26,7 +29,7 @@ export const secondaryListItems = (
         <ListItemText primary="Ongoing Scheduled" />
       </ListItemButton>
     </Link>
-    <Link to="/room">
+    <Link style={{ textDecoration: "none", color: "black" }} to="/addRoom">
       <ListItemButton>
         <ListItemIcon>
           <AssignmentIcon />
