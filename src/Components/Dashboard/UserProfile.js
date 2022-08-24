@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
-import { JWT_Decode } from "../Utilities/JWT_Decode";
+import { JWT_Decode } from "../Utilities/LoggedInUserInfo";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 

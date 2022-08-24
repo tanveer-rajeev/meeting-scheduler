@@ -8,9 +8,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DatePicker } from "@mui/x-date-pickers";
 import axios from "axios";
-import { JWT_Decode } from "../Utilities/JWT_Decode";
+import { JWT_Decode } from "../Utilities/LoggedInUserInfo";
 import moment from "moment";
 import API from "../Server_API/API";
+import { TimeConverter } from "../Utilities/TimeConverter";
 // const [enable, setEnable] = React.useState(true);
 // if (
 //   schedule.room !== "" &&
@@ -34,9 +35,8 @@ export default function MakeSchedule() {
 
   const [rooms, setRooms] = React.useState([]);
   React.useEffect(() => {
-    console.log(API.get.getAllRooms);
     axios
-      .get(`http://localhost:8080/rooms`, {
+      .get(API.get.getAllRooms, {
         headers: {
           Pragma: sessionStorage.getItem("token"),
         },
@@ -56,6 +56,7 @@ export default function MakeSchedule() {
     date = moment(date).format("YYYY-MM-DD");
     endTime = moment(endTime).format("HH:MM");
     name = JWT_Decode();
+
     const bookingApi = `http://localhost:8080/booking/userName/${name}/roomName/${room}`;
     const post = {
       bookingDate: date,
@@ -119,8 +120,7 @@ export default function MakeSchedule() {
               {rooms &&
                 rooms.map((room) => (
                   <MenuItem key={room.id} value={room.roomName}>
-                    {" "}
-                    {room.roomName}{" "}
+                    {room.roomName}
                   </MenuItem>
                 ))}
             </Select>

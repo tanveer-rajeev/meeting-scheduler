@@ -1,14 +1,15 @@
 import { Container, Grid } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import API from "../Server_API/API";
 import RoomCard from "./RoomCard";
 
 const DisplayRooms = () => {
   const [showRoom, setShowRoom] = useState([]);
-
+  const [render, setRender] = useState(0);
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/rooms`, {
+      .get(API.get.getAllRooms, {
         headers: {
           pragma: sessionStorage.getItem("token"),
         },

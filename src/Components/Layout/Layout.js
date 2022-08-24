@@ -79,7 +79,7 @@ function Layout() {
     setOpen(!open);
   };
   const handleLogin = () => {
-    sessionStorage.setItem("token", "");
+    sessionStorage.removeItem("token");
     navigate(`/login`);
   };
 

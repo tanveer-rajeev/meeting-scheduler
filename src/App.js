@@ -10,22 +10,25 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
-import Test from "./Components/Dashboard/Test";
 import Home from "./Components/Dashboard/Home";
-import { JWT_Decode } from "./Components/Utilities/JWT_Decode";
+import { JWT_Decode } from "./Components/Utilities/LoggedInUserInfo";
 import AddRoom from "./Components/Room/AddRoom";
+
 export const UserContext = createContext();
 
 const ProtectedRoute = ({ user }) => {
-  const name = user();
-  if (name == null) {
-    return <Navigate to="/login" replace={true} />;
+  // const name = user();
+
+  console.log(user());
+  if (user() == null) {
+    return <Navigate to="/login" replace />;
   }
 
   return <Outlet />;
 };
 
 const App = () => {
+  console.log("hi");
   return (
     <BrowserRouter>
       <Routes>

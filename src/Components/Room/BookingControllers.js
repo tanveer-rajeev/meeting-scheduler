@@ -1,18 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
-
-const token = sessionStorage.getItem("token");
-const header = {
-  pragma: token,
-};
 
 export const AddBooking = (id, { bookingDate, startTime, endTime }, name) => {
-  // const [errorMessage, setErrorMessage] = useState("");
   const userName = name.slice(1, name.length - 1);
-
-  // const handleError = (err) => {
-  //   setErrorMessage(err.response.data);
-  // };
 
   console.log(userName);
   const bookingAPI = `http://localhost:8080/booking/userName/${userName}/roomId/${id}`;
@@ -24,12 +13,11 @@ export const AddBooking = (id, { bookingDate, startTime, endTime }, name) => {
       endTime: endTime,
     },
     {
-      headers: header,
+      headers: {
+        pragma: sessionStorage.getItem("token"),
+      },
     }
   );
-  // .catch((err) => {
-  //   return <div>{errorMessage && <p>{errorMessage}</p>} </div>;
-  // });
 };
 
 export const DeleteBooking = (id) => {
@@ -37,7 +25,9 @@ export const DeleteBooking = (id) => {
   const deleteApi = `http://localhost:8080/booking/${id}`;
   axios
     .delete(deleteApi, {
-      headers: header,
+      headers: {
+        pragma: sessionStorage.getItem("token"),
+      },
     })
     .then((response) => {
       console.log("delete booking confirm");

@@ -6,11 +6,17 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import axios from "axios";
 import DisplayUserSchdulers from "./DisplayUserSchduler";
-import { JWT_Decode } from "../Utilities/JWT_Decode";
+import { JWT_Decode } from "../Utilities/LoggedInUserInfo";
 
 export default function UserSchduler() {
-  const [bookings, setBookings] = useState([]);
-  console.log("UserSchduler");
+  const [displayBookings, setDisplayBookings] = useState([]);
+  const [render, setRender] = useState(0);
+  // console.log("User scheduler render");
+  const handleSetRender = () => {
+    setRender((number) => number + 1);
+    console.log(render);
+  };
+  // console.log("Outside : " + render);
   useEffect(() => {
     const username = JWT_Decode();
     axios
@@ -20,11 +26,10 @@ export default function UserSchduler() {
         },
       })
       .then((res) => {
-        console.log(res.data);
-        setBookings(res.data);
+        setDisplayBookings(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [render]);
 
   return (
     <>
@@ -39,14 +44,22 @@ export default function UserSchduler() {
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {bookings?.map((data) => (
-            <DisplayUserSchdulers
-              bookingResponse={data}
-              key={data.booking.id}
-            />
-          ))}
-        </TableBody>
+        {displayBookings && (
+          <TableBody>
+            {displayBookings?.map((data) => (
+              <DisplayUserSchdulers
+                bookingResponse={data}
+                key={data.booking.id}
+                handleSetRender={handleSetRender}
+              />
+            ))}
+          </TableBody>
+        )}
+        {!displayBookings && (
+          <TableRow>
+            <TableCell>YOu have no booking yet</TableCell>
+          </TableRow>
+        )}
       </Table>
     </>
   );
