@@ -11,9 +11,8 @@ import moment from "moment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
-export default function EditRoom({ room }) {
+export default function EditRoom({ room, showModal, onHide }) {
   let { id, roomName, capacity, startTime, endTime } = room;
-  const [open, setOpen] = React.useState(true);
   const [editRoom, setEditRoom] = React.useState({
     roomName: "",
     capacity: "",
@@ -22,7 +21,7 @@ export default function EditRoom({ room }) {
   });
 
   const handleClose = () => {
-    setOpen(false);
+    onHide();
   };
 
   const handleSubmit = () => {
@@ -47,7 +46,7 @@ export default function EditRoom({ room }) {
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={showModal} onClose={handleClose}>
         <DialogTitle>Add New Room</DialogTitle>
         <DialogContent>
           <Grid container rowSpacing={2}>

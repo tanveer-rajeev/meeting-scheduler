@@ -29,7 +29,7 @@ export const secondaryListItems = (
         <ListItemText primary="Ongoing Scheduled" />
       </ListItemButton>
     </Link>
-    {!isUser() && (
+    {isUser() && (
       <Link style={{ textDecoration: "none", color: "black" }} to="/addRoom">
         <ListItemButton>
           <ListItemIcon>

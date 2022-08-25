@@ -14,7 +14,7 @@ const parseJwt = (token) => {
 };
 
 const Role = () => {
-  return parseJwt(token)?.authorities[2].authority;
+  return parseJwt(token)?.authorities[2];
 };
 
 export function isUser() {

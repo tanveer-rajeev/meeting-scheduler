@@ -21,7 +21,7 @@ const SignInSide = () => {
   const [newUser, setNewUser] = useState(false);
   const [require, setRequire] = useState("");
   const navigate = useNavigate();
-  // console.log("hi");
+
   const handleResponse = (res) => {
     console.log(typeof res);
     if (typeof res === "string" || res === 403) {

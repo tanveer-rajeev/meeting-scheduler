@@ -17,7 +17,7 @@ function UserProfile() {
   useEffect(() => {
     const name = JWT_Decode();
     axios
-      .get(`http://localhost:8080/users/byName/${name}`, {
+      .get(`http://localhost:8080/api/users/byName/${name}`, {
         headers: {
           Pragma: sessionStorage.getItem("token"),
         },

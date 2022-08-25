@@ -19,7 +19,6 @@ export const UserContext = createContext();
 const ProtectedRoute = ({ user }) => {
   // const name = user();
 
-  console.log(user());
   if (user() == null) {
     return <Navigate to="/login" replace />;
   }

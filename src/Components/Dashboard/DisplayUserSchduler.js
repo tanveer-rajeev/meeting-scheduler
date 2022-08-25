@@ -50,7 +50,6 @@ const DisplayUserSchdulers = ({ bookingResponse, handleSetRender }) => {
       {editModal && (
         <EditBooking
           booking={booking}
-          roomName={roomName}
           showModal={editModal}
           onHideModal={handleEditBooking}
         />

@@ -18,11 +18,11 @@ export default function AddRoom() {
   const [newRoom, setNewRoom] = React.useState({
     roomName: "",
     capacity: "",
-    startTime: "",
-    endTime: "",
+    startTime: null,
+    endTime: null,
   });
   const handleClose = () => {
-    setOpen(false);
+    setOpen((prev) => !prev);
   };
   const handleSubmit = () => {
     let { startTime, endTime } = newRoom;

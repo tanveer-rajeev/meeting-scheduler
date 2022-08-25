@@ -6,7 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import BookedUserInfo from "./BookedUserInfo";
-import { TableFooter, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Grid, Paper } from "@mui/material";
 import { IconButton } from "@mui/material";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -15,12 +15,18 @@ import EditRoom from "./EditRoom";
 import axios from "axios";
 import { TimeConverter } from "../Utilities/TimeConverter";
 
-function RoomCard({ room }) {
-  const { id, roomName, capacity, startTime, endTime, booking } = room;
+function RoomCard({ room, handleRendering }) {
+  const { id, roomName, startTime, endTime, booking } = room;
   const [isShown, setIsShown] = useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
   const startTimeInt = parseInt(startTime.substr(0, 2));
   const endTimeInt = parseInt(endTime.substr(0, 2));
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+    handleRendering();
+  };
+
   const handleDelete = () => {
     console.log(roomName);
     axios
@@ -35,6 +41,7 @@ function RoomCard({ room }) {
       .catch((err) => {
         console.log(err.response.data.message);
       });
+    handleRendering();
   };
 
   return (
@@ -105,7 +112,9 @@ function RoomCard({ room }) {
           {TimeConverter(endTimeInt, endTime)} pm{" "}
         </Typography>
       </Paper>
-      {isUser() && modalOpen && <EditRoom room={room} />}
+      {isUser() && modalOpen && (
+        <EditRoom room={room} showModal={modalOpen} onHide={handleModalClose} />
+      )}
     </Grid>
   );
 }

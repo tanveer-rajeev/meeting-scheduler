@@ -7,20 +7,20 @@ import TableRow from "@mui/material/TableRow";
 import axios from "axios";
 import DisplayUserSchdulers from "./DisplayUserSchduler";
 import { JWT_Decode } from "../Utilities/LoggedInUserInfo";
+import { Typography } from "@mui/material";
 
 export default function UserSchduler() {
   const [displayBookings, setDisplayBookings] = useState([]);
   const [render, setRender] = useState(0);
-  // console.log("User scheduler render");
+
   const handleSetRender = () => {
     setRender((number) => number + 1);
-    console.log(render);
   };
-  // console.log("Outside : " + render);
+
   useEffect(() => {
     const username = JWT_Decode();
     axios
-      .get(`http://localhost:8080/users/allBookings/${username}`, {
+      .get(`http://localhost:8080/api/users/allBookings/${username}`, {
         headers: {
           Pragma: sessionStorage.getItem("token"),
         },
@@ -33,6 +33,9 @@ export default function UserSchduler() {
 
   return (
     <>
+      <Typography variant="h6" gutterBottom>
+        Schedules
+      </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
