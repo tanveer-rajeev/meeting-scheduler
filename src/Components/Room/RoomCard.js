@@ -115,8 +115,8 @@ function RoomCard({ room, handleRendering }) {
             mb: 2,
           }}
         >
-          , Room available {TimeConverter(startTimeInt, startTime)} am to{" "}
-          {TimeConverter(endTimeInt, endTime)} pm{" "}
+          The room is available from {TimeConverter(startTimeInt, startTime)} am
+          to {TimeConverter(endTimeInt, endTime)}
         </Typography>
       </Paper>
       {isUser() && modalOpen && (

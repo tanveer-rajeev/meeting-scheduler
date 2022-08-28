@@ -11,7 +11,6 @@ import axios from "axios";
 import { JWT_Decode } from "../Utilities/LoggedInUserInfo";
 import moment from "moment";
 import API from "../Server_API/API";
-import { RenderContext } from "./Home";
 
 export default function MakeSchedule({ addBookings }) {
   const [schedule, setSchedule] = React.useState({
@@ -40,7 +39,7 @@ export default function MakeSchedule({ addBookings }) {
 
   const handleSubmit = (event) => {
     let { name, room, date, startTime, endTime } = schedule;
-
+    console.log(startTime);
     startTime = moment(startTime).format("HH:MM");
     date = moment(date).format("YYYY-MM-DD");
     endTime = moment(endTime).format("HH:MM");

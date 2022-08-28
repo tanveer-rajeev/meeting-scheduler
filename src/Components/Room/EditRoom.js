@@ -14,8 +14,8 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 export default function EditRoom({ room, showModal, onHide }) {
   let { id, roomName, capacity, startTime, endTime } = room;
   const [editRoom, setEditRoom] = React.useState({
-    roomName: "",
-    capacity: "",
+    roomName: roomName,
+    capacity: capacity,
     startTime: null,
     endTime: null,
   });
@@ -59,7 +59,7 @@ export default function EditRoom({ room, showModal, onHide }) {
                 fullWidth
                 autoComplete="roomName"
                 variant="standard"
-                value={roomName}
+                value={editRoom.roomName}
                 onChange={(newValue) =>
                   setEditRoom((prev) => ({
                     ...prev,
@@ -77,7 +77,7 @@ export default function EditRoom({ room, showModal, onHide }) {
                 fullWidth
                 autoComplete="capacity"
                 variant="standard"
-                value={capacity}
+                value={editRoom.capacity}
                 onChange={(newValue) =>
                   setEditRoom((prev) => ({
                     ...prev,

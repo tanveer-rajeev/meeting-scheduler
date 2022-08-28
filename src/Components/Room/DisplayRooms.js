@@ -6,14 +6,14 @@ import RoomCard from "./RoomCard";
 
 const DisplayRooms = () => {
   const [showRoom, setShowRoom] = useState([]);
-  const [render, setRender] = useState(0);
+  const [render, setRender] = useState(false);
 
   const handleRendering = () => {
-    setRender((prev) => prev + 1);
+    setRender((prev) => !prev);
   };
 
-  useEffect(() => {
-    axios
+  const effectHandler = async () => {
+    await axios
       .get(API.get.getAllRooms, {
         headers: {
           pragma: localStorage.getItem("token"),
@@ -22,6 +22,10 @@ const DisplayRooms = () => {
       .then((response) => {
         setShowRoom(response.data);
       });
+  };
+
+  useEffect(() => {
+    effectHandler();
   }, [render]);
 
   return (

@@ -22,7 +22,6 @@ function BookedUserInfo({ id, startTime, endTime, bookingDate }) {
       });
   }, [id]);
 
-  const handleEditBooking = () => {};
   return (
     <TableRow>
       <TableCell>{TimeConverter(startTimeInt, startTime)}</TableCell>
