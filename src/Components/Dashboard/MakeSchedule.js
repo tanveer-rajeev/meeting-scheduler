@@ -11,19 +11,9 @@ import axios from "axios";
 import { JWT_Decode } from "../Utilities/LoggedInUserInfo";
 import moment from "moment";
 import API from "../Server_API/API";
-import { TimeConverter } from "../Utilities/TimeConverter";
-// const [enable, setEnable] = React.useState(true);
-// if (
-//   schedule.room !== "" &&
-//   schedule.startTime !== null &&
-//   schedule.endTime !== null &&
-//   schedule.date !== new Date()
-// ) {
-//   console.log("button enable");
-//   setEnable((prev) => ({ ...prev, enabled: false }));
-// }
+import { RenderContext } from "./Home";
 
-export default function MakeSchedule() {
+export default function MakeSchedule({ addBookings }) {
   const [schedule, setSchedule] = React.useState({
     name: "",
     room: "",
@@ -32,13 +22,12 @@ export default function MakeSchedule() {
     endTime: null,
     date: new Date(),
   });
-
   const [rooms, setRooms] = React.useState([]);
   React.useEffect(() => {
     axios
       .get(API.get.getAllRooms, {
         headers: {
-          Pragma: sessionStorage.getItem("token"),
+          Pragma: localStorage.getItem("token"),
         },
       })
       .then((response) => {
@@ -68,11 +57,12 @@ export default function MakeSchedule() {
     axios
       .post(bookingApi, post, {
         headers: {
-          Pragma: sessionStorage.getItem("token"),
+          Pragma: localStorage.getItem("token"),
         },
       })
       .then((response) => {
         console.log(response);
+        addBookings();
       })
       .catch((err) => {
         console.log(err.response.data.message);

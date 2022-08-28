@@ -13,7 +13,7 @@ import {
 import Home from "./Components/Dashboard/Home";
 import { JWT_Decode } from "./Components/Utilities/LoggedInUserInfo";
 import AddRoom from "./Components/Room/AddRoom";
-
+import theme from "./theme";
 export const UserContext = createContext();
 
 const ProtectedRoute = ({ user }) => {
@@ -27,9 +27,8 @@ const ProtectedRoute = ({ user }) => {
 };
 
 const App = () => {
-  console.log("hi");
   return (
-    <BrowserRouter>
+    <BrowserRouter theme={theme}>
       <Routes>
         <Route index element={<SignInSide />} />
         <Route path="login" element={<SignInSide />} />

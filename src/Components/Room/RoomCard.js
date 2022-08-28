@@ -6,7 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import BookedUserInfo from "./BookedUserInfo";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Grid, Paper } from "@mui/material";
 import { IconButton } from "@mui/material";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -32,7 +32,7 @@ function RoomCard({ room, handleRendering }) {
     axios
       .delete(`http://localhost:8080/rooms/${id}`, {
         headers: {
-          pragma: sessionStorage.getItem("token"),
+          pragma: localStorage.getItem("token"),
         },
       })
       .then((res) => {
@@ -54,30 +54,37 @@ function RoomCard({ room, handleRendering }) {
       xs={12}
     >
       <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-        <Typography
-          component="h2"
-          variant="h6"
-          color="primary"
-          gutterBottom
-          sx={{
-            display: "flex",
-            justifyContent: "right",
-            mb: 2,
-          }}
-        >
-          {roomName}
-          {isShown && (
-            <>
-              <IconButton onClick={() => setModalOpen(true)}>
-                <BorderColorIcon />
-              </IconButton>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box>
+            <Typography
+              component="h2"
+              variant="h6"
+              color="primary"
+              gutterBottom
+              sx={{
+                display: "flex",
+                justifyContent: "right",
+                mb: 2,
+              }}
+            >
+              {roomName}
+            </Typography>
+          </Box>
+          <Box>
+            {isShown && (
+              <>
+                <IconButton onClick={() => setModalOpen(true)}>
+                  <BorderColorIcon />
+                </IconButton>
 
-              <IconButton onClick={handleDelete}>
-                <DeleteIcon />
-              </IconButton>
-            </>
-          )}
-        </Typography>
+                <IconButton onClick={handleDelete}>
+                  <DeleteIcon />
+                </IconButton>
+              </>
+            )}
+          </Box>
+        </Box>
+
         <Table size="small">
           <TableHead>
             <TableRow>

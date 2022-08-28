@@ -12,9 +12,11 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import API from "../Server_API/API";
 import axios from "axios";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 export default function AddRoom() {
   const [open, setOpen] = React.useState(true);
+  const navigate = useNavigate();
   const [newRoom, setNewRoom] = React.useState({
     roomName: "",
     capacity: "",
@@ -23,6 +25,7 @@ export default function AddRoom() {
   });
   const handleClose = () => {
     setOpen((prev) => !prev);
+    navigate("/ongoingScheduled");
   };
   const handleSubmit = () => {
     let { startTime, endTime } = newRoom;
@@ -39,7 +42,7 @@ export default function AddRoom() {
         },
         {
           headers: {
-            pragma: sessionStorage.getItem("token"),
+            pragma: localStorage.getItem("token"),
           },
         }
       )
@@ -50,7 +53,7 @@ export default function AddRoom() {
         console.log(error.response.data.message);
       });
 
-    setOpen(false);
+    handleClose();
   };
 
   return (

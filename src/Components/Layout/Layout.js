@@ -9,18 +9,18 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems, secondaryListItems } from "./listItems";
 import { Outlet } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, FormControlLabel, Switch } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
+  backgroundColor: "black",
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -62,7 +62,7 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const darkTheme = createTheme({
+const dark = createTheme({
   palette: {
     mode: "dark",
     primary: {
@@ -74,17 +74,18 @@ const mdTheme = createTheme();
 
 function Layout() {
   const [open, setOpen] = useState(true);
+  const [darkTheme, setDarkTheme] = useState(false);
   const navigate = useNavigate();
   const toggleDrawer = () => {
     setOpen(!open);
   };
   const handleLogin = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     navigate(`/login`);
   };
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={darkTheme ? dark : mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -139,6 +140,24 @@ function Layout() {
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              // display: "flex",
+              textAlign: "center",
+            }}
+          >
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={darkTheme}
+                  onChange={() => setDarkTheme(!darkTheme)}
+                />
+              }
+              label={darkTheme ? "White" : "Dark"}
+            />
+          </Box>
         </Drawer>
         <Box
           component="main"

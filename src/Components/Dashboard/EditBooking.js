@@ -28,7 +28,7 @@ export default function EditBooking({ booking, showModal, onHideModal }) {
     axios
       .get(API.get.getAllRooms, {
         headers: {
-          Pragma: sessionStorage.getItem("token"),
+          Pragma: localStorage.getItem("token"),
         },
       })
       .then((response) => {
@@ -41,6 +41,7 @@ export default function EditBooking({ booking, showModal, onHideModal }) {
 
   const handleClose = () => {
     onHideModal();
+    window.location.reload();
   };
 
   const handleEdit = () => {
@@ -57,11 +58,12 @@ export default function EditBooking({ booking, showModal, onHideModal }) {
     axios
       .put(`http://localhost:8080/booking/${id}`, update, {
         headers: {
-          Pragma: sessionStorage.getItem("token"),
+          Pragma: localStorage.getItem("token"),
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

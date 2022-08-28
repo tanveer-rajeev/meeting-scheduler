@@ -32,6 +32,7 @@ const SignInSide = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    localStorage.setItem("test1", "test1");
     const data = new FormData(event.currentTarget);
     console.log(newUser);
 

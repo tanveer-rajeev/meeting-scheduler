@@ -19,7 +19,7 @@ function UserProfile() {
     axios
       .get(`http://localhost:8080/api/users/byName/${name}`, {
         headers: {
-          Pragma: sessionStorage.getItem("token"),
+          Pragma: localStorage.getItem("token"),
         },
       })
       .then((res) => {

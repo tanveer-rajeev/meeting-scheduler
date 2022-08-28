@@ -11,7 +11,8 @@ export const logInWithCredentials = ({ username, password }) => {
     .then((response) => {
       const { headers } = response;
       const jwtToken = headers.pragma;
-      sessionStorage.setItem("token", jwtToken);
+      localStorage.setItem("test", "test");
+      localStorage.setItem("token", jwtToken);
     })
     .catch((error) => {
       return error.response.status;
@@ -38,27 +39,6 @@ export const signUPWithCredentials = ({
       return response.data;
     })
     .catch((err) => {
-      // let errorMessage = signUpErrorNotification(err);
-      // console.log(errorMessage);
       return err.response.data.message;
     });
 };
-
-// const signUpErrorNotification = (error) => {
-//   const errResponse = error.response.data.message;
-//   const firstChar = errResponse.charAt(0);
-
-//   switch (firstChar) {
-//     case "-":
-//       return "User  name already exist \nTry another name";
-
-//     case "~":
-//       return "User name should be at least 3 characters";
-
-//     case ">":
-//       return "Password should be 6 characters and contains with any symbol";
-
-//     default:
-//       return "username and password can not be empty";
-//   }
-// };

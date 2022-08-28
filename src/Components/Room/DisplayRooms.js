@@ -16,7 +16,7 @@ const DisplayRooms = () => {
     axios
       .get(API.get.getAllRooms, {
         headers: {
-          pragma: sessionStorage.getItem("token"),
+          pragma: localStorage.getItem("token"),
         },
       })
       .then((response) => {
