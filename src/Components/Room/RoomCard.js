@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import { isUser } from "../Utilities/LoggedInUserInfo";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import BookedUserInfo from "./BookedUserInfo";
-import { Box, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import { Grid, Paper } from "@mui/material";
 import { IconButton } from "@mui/material";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -22,6 +22,25 @@ function RoomCard({ room, handleRendering }) {
   const startTimeInt = parseInt(startTime.substr(0, 2));
   const endTimeInt = parseInt(endTime.substr(0, 2));
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
   const handleModalClose = () => {
     setModalOpen(false);
     handleRendering();
@@ -32,7 +51,7 @@ function RoomCard({ room, handleRendering }) {
     axios
       .delete(`http://localhost:8080/rooms/${id}`, {
         headers: {
-          pragma: localStorage.getItem("token"),
+          pragma: sessionStorage.getItem("token"),
         },
       })
       .then((res) => {
@@ -59,7 +78,7 @@ function RoomCard({ room, handleRendering }) {
             <Typography
               component="h2"
               variant="h6"
-              color="primary"
+              color="black"
               gutterBottom
               sx={{
                 display: "flex",
@@ -85,15 +104,33 @@ function RoomCard({ room, handleRendering }) {
           </Box>
         </Box>
 
-        <Table size="small">
+        <Table size="small" aria-label="caption table">
+          <caption color="SlateGray">
+            <Typography
+              component="h2"
+              variant="h6"
+              color="SlateGray"
+              gutterBottom
+              sx={{
+                fontSize: 15,
+                display: "flex",
+                justifyContent: "right",
+                mb: 1,
+              }}
+            >
+              The room is available from{" "}
+              {TimeConverter(startTimeInt, startTime)} am to{" "}
+              {TimeConverter(endTimeInt, endTime)}
+            </Typography>
+          </caption>
           <TableHead>
             <TableRow>
-              <TableCell>Start Time</TableCell>
-              <TableCell>End Time</TableCell>
-              <TableCell>Booking Date</TableCell>
-              <TableCell>Username</TableCell>
-              <TableCell>Department</TableCell>
-              <TableCell>PhoneNumber</TableCell>
+              <StyledTableCell>Start Time</StyledTableCell>
+              <StyledTableCell>End Time</StyledTableCell>
+              <StyledTableCell>Booking Date</StyledTableCell>
+              <StyledTableCell>Username</StyledTableCell>
+              <StyledTableCell>Department</StyledTableCell>
+              <StyledTableCell>PhoneNumber</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -102,22 +139,6 @@ function RoomCard({ room, handleRendering }) {
             ))}
           </TableBody>
         </Table>
-        <Typography
-          component="h2"
-          variant="h6"
-          color="green"
-          gutterBottom
-          sx={{
-            paddingTop: 2,
-            fontSize: 13,
-            display: "flex",
-            justifyContent: "right",
-            mb: 2,
-          }}
-        >
-          The room is available from {TimeConverter(startTimeInt, startTime)} am
-          to {TimeConverter(endTimeInt, endTime)}
-        </Typography>
       </Paper>
       {isUser() && modalOpen && (
         <EditRoom room={room} showModal={modalOpen} onHide={handleModalClose} />

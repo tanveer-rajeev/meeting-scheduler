@@ -22,9 +22,9 @@ const Home = () => {
     console.log("EffectHandler");
     const username = JWT_Decode();
     await axios
-      .get(`http://localhost:8080/api/users/allBookings/${username}`, {
+      .get(`http://localhost:8080/users/allBookings/${username}`, {
         headers: {
-          Pragma: localStorage.getItem("token"),
+          Pragma: sessionStorage.getItem("token"),
         },
       })
       .then((res) => {

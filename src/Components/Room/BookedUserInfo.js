@@ -14,7 +14,7 @@ function BookedUserInfo({ id, startTime, endTime, bookingDate }) {
     axios
       .get(`http://localhost:8080/booking/user/bookingId/${id}`, {
         headers: {
-          pragma: localStorage.getItem("token"),
+          pragma: sessionStorage.getItem("token"),
         },
       })
       .then((response) => {

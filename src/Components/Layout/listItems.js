@@ -3,6 +3,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Link } from "react-router-dom";
 import { isUser } from "../Utilities/LoggedInUserInfo";
 export const mainListItems = (
@@ -26,14 +27,14 @@ export const secondaryListItems = (
         <ListItemIcon>
           <AssignmentIcon />
         </ListItemIcon>
-        <ListItemText primary="Ongoing Scheduled" />
+        <ListItemText primary="Ongoing Schedules" />
       </ListItemButton>
     </Link>
     {isUser() && (
       <Link style={{ textDecoration: "none", color: "black" }} to="/addRoom">
         <ListItemButton>
           <ListItemIcon>
-            <AssignmentIcon />
+            <AddCircleIcon />
           </ListItemIcon>
           <ListItemText primary="Add Room" />
         </ListItemButton>

@@ -28,7 +28,7 @@ export default function EditBooking({ booking, showModal, onHideModal }) {
     axios
       .get(API.get.getAllRooms, {
         headers: {
-          Pragma: localStorage.getItem("token"),
+          Pragma: sessionStorage.getItem("token"),
         },
       })
       .then((response) => {
@@ -58,7 +58,7 @@ export default function EditBooking({ booking, showModal, onHideModal }) {
     axios
       .put(`http://localhost:8080/booking/${id}`, update, {
         headers: {
-          Pragma: localStorage.getItem("token"),
+          Pragma: sessionStorage.getItem("token"),
         },
       })
       .then((response) => {

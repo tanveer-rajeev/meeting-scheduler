@@ -11,8 +11,8 @@ export const logInWithCredentials = ({ username, password }) => {
     .then((response) => {
       const { headers } = response;
       const jwtToken = headers.pragma;
-      localStorage.setItem("test", "test");
-      localStorage.setItem("token", jwtToken);
+      sessionStorage.setItem("test", "test");
+      sessionStorage.setItem("token", jwtToken);
     })
     .catch((error) => {
       return error.response.status;

@@ -20,7 +20,7 @@ const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  backgroundColor: "black",
+  backgroundColor: "Black",
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -40,6 +40,7 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
+    // backgroundColor: "Gainsboro",
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
@@ -80,7 +81,7 @@ function Layout() {
     setOpen(!open);
   };
   const handleLogin = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     navigate(`/login`);
   };
 

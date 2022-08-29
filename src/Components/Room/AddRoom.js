@@ -42,7 +42,7 @@ export default function AddRoom() {
         },
         {
           headers: {
-            pragma: localStorage.getItem("token"),
+            pragma: sessionStorage.getItem("token"),
           },
         }
       )

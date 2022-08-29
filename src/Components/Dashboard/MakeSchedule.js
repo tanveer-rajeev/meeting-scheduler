@@ -26,7 +26,7 @@ export default function MakeSchedule({ addBookings }) {
     axios
       .get(API.get.getAllRooms, {
         headers: {
-          Pragma: localStorage.getItem("token"),
+          Pragma: sessionStorage.getItem("token"),
         },
       })
       .then((response) => {
@@ -56,7 +56,7 @@ export default function MakeSchedule({ addBookings }) {
     axios
       .post(bookingApi, post, {
         headers: {
-          Pragma: localStorage.getItem("token"),
+          Pragma: sessionStorage.getItem("token"),
         },
       })
       .then((response) => {

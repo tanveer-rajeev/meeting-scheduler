@@ -14,7 +14,7 @@ export const AddBooking = (id, { bookingDate, startTime, endTime }, name) => {
     },
     {
       headers: {
-        pragma: localStorage.getItem("token"),
+        pragma: sessionStorage.getItem("token"),
       },
     }
   );
@@ -26,7 +26,7 @@ export const DeleteBooking = (id) => {
   axios
     .delete(deleteApi, {
       headers: {
-        pragma: localStorage.getItem("token"),
+        pragma: sessionStorage.getItem("token"),
       },
     })
     .then((response) => {

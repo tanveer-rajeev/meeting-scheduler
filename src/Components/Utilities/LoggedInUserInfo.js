@@ -1,4 +1,4 @@
-let token = localStorage.getItem("token");
+let token = sessionStorage.getItem("token");
 
 // TODO: At the very First time log in problem
 export function JWT_Decode() {
