@@ -20,22 +20,22 @@ npm install
 
 ## Screenshots
 
-### User Schedules History
+### Registration Form
 
-![User scheduler history](https://user-images.githubusercontent.com/39630470/136975442-f0f7772c-2116-42d2-b9a4-0a1c3a4a5f9c.PNG)
+![RegistrationForm](https://user-images.githubusercontent.com/39630470/187121274-c616e375-60c8-4473-8c6a-132c38706307.PNG)
 
-### On going meeting
+### Sign In Form
 
-![On going meeting](https://user-images.githubusercontent.com/39630470/136975515-e3d46c68-07a5-460a-a560-508107e61d43.PNG)
+![Sign In Form](https://user-images.githubusercontent.com/39630470/187121308-8bb23262-1e1b-41cb-a094-162e80e5dce0.PNG)
 
-### Edit User Scheduler
+### Home
 
-![Edit user scheduler](https://user-images.githubusercontent.com/39630470/136975568-6f716485-f58f-4b34-a8ce-f10a850b09d0.PNG)
+![Home](https://user-images.githubusercontent.com/39630470/187121355-217aac9d-cc49-405d-a97f-96380aefabb1.PNG)
 
-### Booking A Schedule
+### On going schedules - Admin has only the authority to edit and delete the existing room.
 
-![Booking Schedule](https://user-images.githubusercontent.com/39630470/136975920-a0698ad5-f119-49df-ba26-6dd5b6f9d645.PNG)
+![On Going Schedules](https://user-images.githubusercontent.com/39630470/187121411-474d329e-e887-4654-8308-0afdc8e13be1.PNG)
 
-### Add Meeting Room
+### Add Meeting Room - Admin can add new room.
 
-![AddRoom](https://user-images.githubusercontent.com/39630470/136976160-56df9580-bbbb-4edf-b4e8-0ac3e1a0be85.PNG)
+![AddRoom](https://user-images.githubusercontent.com/39630470/187121465-3fde7b73-cb3b-4ecd-b5c8-f01d31154568.PNG)
